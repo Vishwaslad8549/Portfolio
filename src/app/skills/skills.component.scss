@@ -1,0 +1,37 @@
+.skills-section {
+    padding: 5rem 5%;
+    background: #1a1a1a;
+    color: white;
+  
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+  
+      .skill-card {
+        padding: 1.5rem;
+        
+        i {
+          font-size: 2rem;
+        }
+  
+        .progress-bar {
+          height: 8px;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      padding: 3rem 5%;
+      
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  }

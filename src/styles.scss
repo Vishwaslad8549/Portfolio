@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+// Remove default margins and full-width fix
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  // Main content wrapper
+  main {
+    margin-top: 70px; // Match header height
+    overflow: hidden;
+  }
+  
+  // Remove any default borders
+  * {
+    box-sizing: border-box;
+    
+    &::before,
+    &::after {
+      box-sizing: inherit;
+    }
+  }
+
+  // Add to styles.scss
+section {
+    padding: 8rem 5%;
+    
+    @media (max-width: 768px) {
+      padding: 6rem 5%;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 4rem 5%;
+    }
+  }
+
+  // Add to styles.scss
+a, button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .skill-card, .project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  nav {
+    background: rgba(17, 17, 17, 0.95);
+    
+    @supports (backdrop-filter: blur(10px)) {
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(10px);
+    }
+  }
+  .project-card {
+    background: #333;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+  }

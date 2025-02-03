@@ -1,0 +1,113 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    position: fixed;
+    width: 100%; // Full width
+    top: 0;
+    background: rgba(17, 17, 17, 0.98); // More opaque
+    backdrop-filter: blur(10px); // Glass effect
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+    .logo {
+      font-size: 2rem; // Larger logo
+      font-weight: 700;
+      background: linear-gradient(45deg, #dd0031, #ff6b6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      
+      span {
+        font-weight: 900;
+      }
+    }
+  
+    ul {
+      display: flex;
+      gap: 3rem;
+      
+      li {
+        list-style: none;
+        position: relative;
+        
+        a {
+          font-size: 1.1rem;
+          text-decoration: none;
+          color: #fff;
+          transition: all 0.3s ease;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dd0031;
+            transition: width 0.3s ease;
+          }
+  
+          &:hover {
+            color: #dd0031;
+            
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 1rem 5%;
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+  
+      ul {
+        position: fixed;
+        top: 70px; // Match header height
+        right: -100%;
+        height: calc(100vh - 70px);
+        width: 60%;
+        background: rgba(17, 17, 17, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 2rem;
+        
+        &.active {
+          right: 0;
+        }
+        
+        li a {
+          font-size: 1.3rem;
+          padding: 1rem 0;
+          
+          &::after {
+            bottom: 0;
+          }
+        }
+      }
+  
+      .menu-toggle {
+        .bar {
+          background: #fff;
+          width: 30px;
+          height: 3px;
+          transition: all 0.3s ease;
+        }
+        
+        &.active .bar {
+          background: #dd0031;
+        }
+      }
+    }
+  }

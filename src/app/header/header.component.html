@@ -1,0 +1,17 @@
+<nav>
+    <div class="logo">
+      <span>Angular</span> Dev
+    </div>
+    
+    <div class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    
+    <ul [class.active]="isMenuOpen">
+      <li *ngFor="let link of navLinks">
+        <a [href]="link.path" (click)="closeMenu()">{{ link.label }}</a>
+      </li>
+    </ul>
+  </nav>

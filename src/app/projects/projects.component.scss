@@ -1,0 +1,40 @@
+.projects-section {
+    padding: 5rem 5%;
+    background: #222;
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+  
+      .project-card {
+        .project-image {
+          height: 180px;
+        }
+  
+        .project-info {
+          padding: 1rem;
+          
+          h3 {
+            font-size: 1.2rem;
+          }
+          
+          p {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      padding: 3rem 5%;
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }

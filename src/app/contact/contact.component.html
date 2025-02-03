@@ -1,0 +1,35 @@
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+      <h2>Get In Touch</h2>
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div class="form-group">
+          <input type="text" formControlName="name" placeholder="Your Name">
+          <div *ngIf="contactForm.get('name')?.errors?.['required'] && contactForm.get('name')?.touched" class="error">
+            Name is required
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Your Email">
+          <div *ngIf="contactForm.get('email')?.errors?.['required'] && contactForm.get('email')?.touched" class="error">
+            Email is required
+          </div>
+          <div *ngIf="contactForm.get('email')?.errors?.['email'] && contactForm.get('email')?.touched" class="error">
+            Invalid email format
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <textarea formControlName="message" placeholder="Your Message" rows="5"></textarea>
+          <div *ngIf="contactForm.get('message')?.errors?.['required'] && contactForm.get('message')?.touched" class="error">
+            Message is required
+          </div>
+          <div *ngIf="contactForm.get('message')?.errors?.['minlength'] && contactForm.get('message')?.touched" class="error">
+            Message must be at least 20 characters
+          </div>
+        </div>
+  
+        <button type="submit" [disabled]="!contactForm.valid">Send Message</button>
+      </form>
+    </div>
+  </section>
