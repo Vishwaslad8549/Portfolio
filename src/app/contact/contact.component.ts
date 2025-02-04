@@ -32,11 +32,13 @@ export class ContactComponent {
             //console.log('Email sent successfully', response);
             //alert('Message sent successfully!');
             this.ismessagesent=true;
+            this.isError=false
             this.contactForm.reset();
           },
           (error) => {
             console.error('Error sending email', error);
             this.isError=true
+            this.ismessagesent=false
             //alert('Failed to send message. Please try again.');
           }
         );
