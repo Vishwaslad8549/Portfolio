@@ -30,6 +30,12 @@
         </div>
   
         <button type="submit" [disabled]="!contactForm.valid">Send Message</button>
+        <div *ngIf="ismessagesent" class="ismessagesent">
+          The message is sent successfully
+        </div>
+        <div *ngIf="isError" class="isError">
+          There is an error while sending the message
+        </div>
       </form>
     </div>
   </section>

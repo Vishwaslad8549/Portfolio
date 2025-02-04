@@ -9,7 +9,10 @@
       align-items: flex-start;
     }
   }
-  
+  .hero-subtitle{
+    display: flex;
+    width: 30vw;
+  }
   .cta-button {
     background: linear-gradient(45deg, #dd0031, #ff6b6b);
     color: white;
