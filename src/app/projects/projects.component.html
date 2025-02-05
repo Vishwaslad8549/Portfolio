@@ -1,9 +1,9 @@
 <section id="projects" class="projects-section">
     <h2>Featured Projects</h2>
     <div class="projects-grid">
-      <div class="project-card" *ngFor="let project of projects">
-        <div class="project-image">
-          <img [src]="project.image" [alt]="project.title">
+      <div class="project-card" *ngFor="let project of projects; let i=index">
+        <div class="project-image" (click)="openSlider(i)">
+          <img [src]="project.images[0]" [alt]="project.title">
         </div>
         <div class="project-info">
           <h3>{{ project.title }}</h3>
@@ -11,10 +11,22 @@
           <div class="tech-stack">
             <span *ngFor="let tech of project.technologies">{{ tech }}</span>
           </div>
-          <a [href]="project.link" target="_blank" class="project-link">
+          <a [href]="project.link" target="_blank" class="project-link" style="color:white">
             View Project <i class="fas fa-arrow-right"></i>
           </a>
         </div>
+      </div>
+    </div>
+
+    <div class="image-slider-modal" *ngIf="isSliderOpen">
+      <div class="slider-content">
+        <button class="close-btn" (click)="closeSlider()">&times;</button>
+  
+        <button class="prev-btn" (click)="prevImage()">&#10094;</button>
+  
+        <img [src]="projects[selectedProjectIndex].images[selectedImageIndex]" alt="Project Image" class="slider-image">
+  
+        <button class="next-btn" (click)="nextImage()">&#10095;</button>
       </div>
     </div>
   </section>
