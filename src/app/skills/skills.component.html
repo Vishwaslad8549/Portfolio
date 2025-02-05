@@ -4,10 +4,6 @@
       <div class="skill-card" *ngFor="let skill of skills">
         <i [class]="skill.icon"></i>
         <h3>{{ skill.name }}</h3>
-        <div class="progress-bar">
-          <div class="progress" [style.width.%]="skill.level"></div>
-        </div>
-        <span class="percentage">{{ skill.level }}%</span>
       </div>
     </div>
   </section>

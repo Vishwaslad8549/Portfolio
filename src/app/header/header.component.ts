@@ -8,16 +8,17 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isMenuOpen = false;
   navLinks = [
-    { path: '#skills', label: 'Skills' },
-    { path: '#projects', label: 'Projects' },
-    { path: '#contact', label: 'Contact' }
+    { path: 'skills', label: 'Skills' },
+    { path: 'projects', label: 'Projects' },
+    { path: 'contacts', label: 'Contact' }
   ];
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  closeMenu() {
+  scrollToSection(sectionId:string) {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     this.isMenuOpen = false;
   }
 }

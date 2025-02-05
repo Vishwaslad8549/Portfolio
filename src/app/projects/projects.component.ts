@@ -9,18 +9,18 @@ import { Project } from '../models/projects';
 export class ProjectsComponent {
   projects: Project[] = [
     {
-      title: 'E-commerce Platform',
-      description: 'Full-featured Angular e-commerce solution with NgRx state management',
-      technologies: ['Angular', 'NgRx', 'Firebase', 'SCSS'],
-      images: ['assets/Postify_Login.png', 'assets/project1-2.jpg', 'assets/project1-3.jpg'],
-      link: '#'
+      title: 'Postify',
+      description: 'MEAN stack application which lets users post content online. The application is hosted on the Render hosting platform',
+      technologies: ['Angular', 'MongoDb', 'ExpressJS', 'NodeJS','SCSS','RxJS'],
+      images: ['assets/Postify/Create_post.jpg', 'assets/Postify/Postify_Login.png', 'assets/Postify/Posts.png'],
+      link: 'https://latest-angular-postify.onrender.com'
     },
     {
-      title: 'Real-time Dashboard',
-      description: 'Data visualization dashboard with real-time updates using WebSocket',
-      technologies: ['Angular', 'RxJS', 'Chart.js', 'Node.js'],
-      images: ['assets/Postify_Login.png', 'assets/project1-2.jpg', 'assets/project1-3.jpg'],
-      link: '#'
+      title: 'Portfolio Website',
+      description: 'Personal portfolio website built with Angular framework.',
+      technologies: ['Angular', 'EmailJs', 'Html','SCSS','Typescript'],
+      images: ['assets/Portfolio/contact.jpg', 'assets/Portfolio/Home.jpg'],
+      link: 'https://portfolio-jb6b.onrender.com'
     },
     // Add more projects
   ];

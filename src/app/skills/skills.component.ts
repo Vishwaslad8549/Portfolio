@@ -11,8 +11,10 @@ export class SkillsComponent {
     { name: 'Angular', level: 90, icon: 'fab fa-angular' },
     { name: 'TypeScript', level: 85, icon: 'fas fa-code' },
     { name: 'RxJS', level: 80, icon: 'fas fa-project-diagram' },
-    { name: 'NgRx', level: 75, icon: 'fas fa-cube' },
-    { name: 'SCSS', level: 85, icon: 'fab fa-sass' },
-    { name: 'Node.js', level: 70, icon: 'fab fa-node' }
+    // { name: 'SCSS', level: 85, icon: 'fab fa-sass' },
+    { name: 'NodeJS', level: 70, icon: 'fab fa-node' },
+    // {name:'DexExpress',level:90,icon:'fas fa-database'},
+    {name:'MongoDb',level:90,icon:'fas fa-leaf'},
+    {name:'ExpressJS',level:90,icon:'fas fa-server'}
   ];
 }

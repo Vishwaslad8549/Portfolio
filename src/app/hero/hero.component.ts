@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./hero.component.scss']
 })
 export class HeroComponent {
-
+  contactClick(){
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

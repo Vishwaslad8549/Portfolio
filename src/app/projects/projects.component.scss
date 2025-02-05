@@ -66,7 +66,7 @@
   h2 {
     font-size: 2rem;
     margin-bottom: 30px;
-    color: #333;
+    color: #000000;
   }
 
   .projects-grid {
@@ -79,7 +79,7 @@
   }
 
   .project-card {
-    background: #fff;
+    background: #000000;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -89,6 +89,7 @@
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease-in-out;
+    border:none;
 
     &:hover {
       transform: translateY(-5px);
@@ -101,7 +102,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #ddd;
+      background: #000000;
       cursor: pointer; // Show pointer cursor to indicate clickability
 
       img {
@@ -119,6 +120,10 @@
     .project-info {
       padding: 20px;
       text-align: left;
+      h3,p{
+        color: #ffffff;
+      }
+      
     }
   }
 
