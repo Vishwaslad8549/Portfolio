@@ -1,40 +1,49 @@
 <section class="hero">
-    <div class="hero-content">
-      <h1>
-        Hi, I'm <span class="gradient-text">Vishwas Lad</span><br>
-        Angular Developer
-      </h1>
+  <div class="hero-content">
+    <!-- Status/Eyebrow -->
+    <div class="hero-status" [@fadeInUp]="animationState">
+      <div class="status-indicator"></div>
+      <span>Available for new opportunities</span>
+    </div>
+
+    <!-- Main heading with gradient -->
+    <h1 class="hero-heading" [@fadeInUp]="animationState">
+      Hi, I'm <span class="gradient-text">Vishwas Lad</span><br>
+      <span class="role-text">Angular Developer</span>
+    </h1>
+    
+    <!-- Description -->
+    <p class="hero-description" [@fadeInUp]="animationState">
+      I craft modern, scalable web applications with a focus on exceptional user experiences. 
+      Specializing in Angular, TypeScript, and cutting-edge frontend technologies.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="hero-cta" [@fadeInUp]="animationState">
+      <a (click)="contactClick()" class="cta-primary">
+        <span>Let's Work Together</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
       
-      <p class="hero-subtitle">
-          Hello! I'm a software developer with a focus on front-end development using Angular. I enjoy
-          building engaging and responsive user interfaces.   
-      </p>
-  
-      <div class="hero-cta">
-        <a (click)="contactClick()" class="cta-button">
-          Let's Work Together
-          <i class="fas fa-arrow-right"></i>
+      <div class="social-links">
+        <a href="https://github.com/Vishwaslad8549" target="_blank" rel="noopener noreferrer" 
+           class="social-link" aria-label="GitHub Profile">
+          <i class="fab fa-github"></i>
         </a>
-        
-        <div class="social-links">
-          <a href="https://github.com/Vishwaslad8549" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/vishwas-lad-a53949156" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </div>
-      </div>
-  
-      <!-- Animated background elements -->
-      <div class="hero-deco">
-        <div class="deco-circle"></div>
-        <div class="deco-square"></div>
+        <a href="https://www.linkedin.com/in/vishwas-lad-a53949156" target="_blank" rel="noopener noreferrer" 
+           class="social-link" aria-label="LinkedIn Profile">
+          <i class="fab fa-linkedin"></i>
+        </a>
       </div>
     </div>
-  
-    <!-- Animated angular logo background -->
-    <div class="angular-logo-bg">
-      <svg><!-- Your Angular logo SVG here --></svg>
-    </div>
-  </section>
+  </div>
+
+  <!-- Decorative elements -->
+  <div class="hero-decoration">
+    <div class="decoration-orb decoration-orb-1"></div>
+    <div class="decoration-orb decoration-orb-2"></div>
+    <div class="decoration-grid"></div>
+  </div>
+</section>

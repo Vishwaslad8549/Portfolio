@@ -1,32 +1,107 @@
-<section id="projects" class="projects-section">
-    <h2>Featured Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card" *ngFor="let project of projects; let i=index">
-        <div class="project-image" (click)="openSlider(i)">
-          <img [src]="project.images[0]" [alt]="project.title">
-        </div>
-        <div class="project-info">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="tech-stack">
-            <span *ngFor="let tech of project.technologies" style="color:white"> {{ tech }}</span>
+<section class="projects-section">
+  <div class="section-header">
+    <h2>Featured Work</h2>
+    <p class="section-subtitle">
+      Showcasing my latest projects and technical achievements
+    </p>
+  </div>
+  
+  <div class="projects-grid">
+    <div class="project-card" *ngFor="let project of projects; let i = index" 
+         [style.animation-delay.ms]="i * 150">
+      
+      <div class="project-image" (click)="openSlider(i)">
+        <img [src]="project.images[0]" [alt]="project.title" loading="lazy">
+        <div class="image-overlay">
+          <div class="overlay-content">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 3H21V9M21 3L12 12M9 21H3V15M3 21L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>View Gallery</span>
           </div>
-          <a [href]="project.link" target="_blank" class="project-link" style="color:white">
-            View Project <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>
+      
+      <div class="project-content">
+        <div class="project-header">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <a [href]="project.link" target="_blank" class="project-external" 
+             aria-label="Open project in new tab">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        
+        <p class="project-description">{{ project.description }}</p>
+        
+        <div class="tech-stack">
+          <span class="tech-tag" *ngFor="let tech of project.technologies">
+            {{ tech }}
+          </span>
+        </div>
+        
+        <div class="project-actions">
+          <a [href]="project.link" target="_blank" class="project-link">
+            <span>View Project</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </a>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="image-slider-modal" *ngIf="isSliderOpen">
-      <div class="slider-content">
-        <button class="close-btn" (click)="closeSlider()">&times;</button>
-  
-        <button class="prev-btn" (click)="prevImage()">&#10094;</button>
-  
-        <img [src]="projects[selectedProjectIndex].images[selectedImageIndex]" alt="Project Image" class="slider-image">
-  
-        <button class="next-btn" (click)="nextImage()">&#10095;</button>
+  <!-- Enhanced Image Slider Modal -->
+  <div class="image-modal" *ngIf="isSliderOpen" (click)="closeSlider()">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header">
+        <h4>{{ projects[selectedProjectIndex].title }}</h4>
+        <button class="close-btn" (click)="closeSlider()" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-image-container">
+        <button class="nav-btn prev-btn" (click)="prevImage()" 
+                [disabled]="projects[selectedProjectIndex].images.length <= 1"
+                aria-label="Previous image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <img [src]="projects[selectedProjectIndex].images[selectedImageIndex]" 
+             [alt]="projects[selectedProjectIndex].title" 
+             class="modal-image">
+        
+        <button class="nav-btn next-btn" (click)="nextImage()" 
+                [disabled]="projects[selectedProjectIndex].images.length <= 1"
+                aria-label="Next image">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-footer" *ngIf="projects[selectedProjectIndex].images.length > 1">
+        <div class="image-indicators">
+          <button 
+            *ngFor="let image of projects[selectedProjectIndex].images; let i = index"
+            class="indicator"
+            [class.active]="i === selectedImageIndex"
+            (click)="selectedImageIndex = i">
+          </button>
+        </div>
+        <span class="image-counter">
+          {{ selectedImageIndex + 1 }} / {{ projects[selectedProjectIndex].images.length }}
+        </span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
