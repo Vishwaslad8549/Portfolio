@@ -1,18 +1,13 @@
-// =============================================================================
-// CONTACT SECTION - Glass-Effect Form Design
-// =============================================================================
-
 .contact-section {
   .section-header {
     text-align: center;
     margin-bottom: var(--space-16);
-    
+
     h2 {
       font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
       font-weight: var(--font-bold);
       color: var(--text-primary);
       margin-bottom: var(--space-4);
-      
       &::after {
         content: '';
         display: block;
@@ -23,7 +18,7 @@
         border-radius: 1px;
       }
     }
-    
+
     .section-subtitle {
       font-size: var(--text-lg);
       color: var(--text-secondary);
@@ -32,11 +27,11 @@
       line-height: var(--leading-relaxed);
     }
   }
-  
+
   .contact-container {
     display: flex;
     justify-content: center;
-    
+
     .contact-form-wrapper {
       width: 100%;
       max-width: 600px;
@@ -47,8 +42,7 @@
       border-radius: var(--radius-xl);
       padding: var(--space-12);
       position: relative;
-      
-      // Glass highlight effect
+
       &::before {
         content: '';
         position: absolute;
@@ -58,23 +52,18 @@
         height: 1px;
         background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       }
-      
+
       .contact-form {
         .form-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: var(--space-6);
           margin-bottom: var(--space-6);
-          
-          @media (max-width: 640px) {
-            grid-template-columns: 1fr;
-            gap: var(--space-5);
-          }
         }
-        
+
         .form-group {
           margin-bottom: var(--space-6);
-          
+
           .form-label {
             display: block;
             font-size: var(--text-sm);
@@ -83,9 +72,8 @@
             margin-bottom: var(--space-2);
             letter-spacing: var(--tracking-wide);
           }
-          
-          .form-input,
-          .form-textarea {
+
+          .form-input, .form-textarea {
             width: 100%;
             background: var(--surface-hover);
             border: 1px solid var(--border);
@@ -96,29 +84,24 @@
             color: var(--text-primary);
             transition: all var(--transition-normal);
             resize: none;
-            
-            &::placeholder {
-              color: var(--text-muted);
-            }
-            
+
+            &::placeholder { color: var(--text-muted); }
+
             &:focus {
               outline: none;
               border-color: var(--accent-primary);
               box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
               background: var(--surface-active);
             }
-            
+
             &.error {
               border-color: #EF4444;
               box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
             }
           }
-          
-          .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-          }
-          
+
+          .form-textarea { min-height: 120px; resize: vertical; }
+
           .error-message {
             display: flex;
             align-items: center;
@@ -126,13 +109,10 @@
             color: #EF4444;
             font-size: var(--text-sm);
             margin-top: var(--space-2);
-            
-            svg {
-              flex-shrink: 0;
-            }
+            svg { flex-shrink: 0; }
           }
         }
-        
+
         .submit-btn {
           width: 100%;
           display: flex;
@@ -150,8 +130,7 @@
           transition: all var(--transition-normal);
           position: relative;
           overflow: hidden;
-          
-          // Hover gradient overlay
+
           &::before {
             content: '';
             position: absolute;
@@ -160,50 +139,25 @@
             opacity: 0;
             transition: opacity var(--transition-normal);
           }
-          
-          // Content stays above overlay
-          span, svg {
-            position: relative;
-            z-index: 1;
-          }
-          
-          svg {
-            transition: transform var(--transition-normal);
-          }
-          
+
+          span, svg { position: relative; z-index: 1; }
+          svg { transition: transform var(--transition-normal); }
+
           &:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: var(--shadow-glow);
-            
-            &::before {
-              opacity: 1;
-            }
-            
-            svg {
-              transform: translateX(2px);
-            }
+            &::before { opacity: 1; }
+            svg { transform: translateX(2px); }
           }
-          
+
           &:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
-            
-            &:hover {
-              transform: none;
-              box-shadow: none;
-              
-              &::before {
-                opacity: 0;
-              }
-              
-              svg {
-                transform: none;
-              }
-            }
+            &:hover { transform: none; box-shadow: none; }
           }
         }
-        
+
         .status-message {
           display: flex;
           align-items: center;
@@ -213,17 +167,14 @@
           margin-top: var(--space-4);
           font-size: var(--text-sm);
           font-weight: var(--font-medium);
-          
-          svg {
-            flex-shrink: 0;
-          }
-          
+          svg { flex-shrink: 0; }
+
           &.success {
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.2);
             color: #22C55E;
           }
-          
+
           &.error {
             background: rgba(239, 68, 68, 0.1);
             border: 1px solid rgba(239, 68, 68, 0.2);
@@ -233,44 +184,26 @@
       }
     }
   }
-  
-  // Responsive adjustments
-  @media (max-width: 768px) {
-    .section-header {
-      margin-bottom: var(--space-12);
-    }
-    
-    .contact-container {
-      .contact-form-wrapper {
-        padding: var(--space-8);
-        margin: 0 var(--space-4);
-      }
-    }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    .section-header { margin-bottom: var(--space-12); }
+    .contact-container .contact-form-wrapper { padding: var(--space-8); margin: 0 var(--space-4); }
   }
-  
-  @media (max-width: 480px) {
-    .contact-container {
-      .contact-form-wrapper {
-        padding: var(--space-6);
-        margin: 0 var(--space-3);
-        
-        .contact-form {
-          .form-group {
-            margin-bottom: var(--space-5);
-            
-            .form-input,
-            .form-textarea {
-              padding: var(--space-3);
-              font-size: var(--text-sm);
-            }
-          }
-          
-          .submit-btn {
-            padding: var(--space-3) var(--space-5);
-            font-size: var(--text-sm);
-          }
-        }
-      }
-    }
+}
+
+@media (max-width: 640px) {
+  .contact-section .contact-container .contact-form-wrapper .contact-form .form-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-section .contact-container .contact-form-wrapper {
+    padding: var(--space-6);
+    margin: 0 var(--space-3);
+    .contact-form .form-group { margin-bottom: var(--space-5); }
   }
 }

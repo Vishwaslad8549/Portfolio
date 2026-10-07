@@ -1,19 +1,13 @@
-// =============================================================================
-// SKILLS SECTION - Glassmorphism Cards
-// =============================================================================
-
 .skills-section {
   .section-header {
     text-align: center;
     margin-bottom: var(--space-16);
-    
+
     h2 {
       font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
       font-weight: var(--font-bold);
       color: var(--text-primary);
       margin-bottom: var(--space-4);
-      
-      // Subtle gradient on key word
       &::after {
         content: '';
         display: block;
@@ -24,7 +18,7 @@
         border-radius: 1px;
       }
     }
-    
+
     .section-subtitle {
       font-size: var(--text-lg);
       color: var(--text-secondary);
@@ -33,23 +27,13 @@
       line-height: var(--leading-relaxed);
     }
   }
-  
+
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-6);
-    
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-4);
-    }
-    
-    @media (max-width: 480px) {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
   }
-  
+
   .skill-card {
     background: var(--surface);
     backdrop-filter: var(--glass-blur);
@@ -62,8 +46,7 @@
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
     transform: translateY(30px);
-    
-    // Glass highlight effect
+
     &::before {
       content: '';
       position: absolute;
@@ -73,23 +56,23 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     }
-    
+
     &:hover {
       transform: translateY(-8px);
       border-color: var(--border-hover);
       background: var(--surface-hover);
       box-shadow: var(--shadow-xl);
-      
+
       .skill-icon i {
         transform: scale(1.1);
         color: var(--accent-primary);
       }
-      
+
       .skill-progress {
         background: var(--accent-gradient);
       }
     }
-    
+
     .skill-icon {
       display: flex;
       align-items: center;
@@ -100,14 +83,14 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       margin-bottom: var(--space-6);
-      
+
       i {
         font-size: var(--text-2xl);
         color: var(--text-secondary);
         transition: all var(--transition-normal);
       }
     }
-    
+
     .skill-content {
       .skill-name {
         font-size: var(--text-xl);
@@ -116,12 +99,12 @@
         margin-bottom: var(--space-4);
         letter-spacing: var(--tracking-tight);
       }
-      
+
       .skill-level {
         display: flex;
         align-items: center;
         gap: var(--space-3);
-        
+
         .skill-bar {
           flex: 1;
           height: 6px;
@@ -129,15 +112,14 @@
           border-radius: var(--radius-full);
           overflow: hidden;
           position: relative;
-          
+
           .skill-progress {
             height: 100%;
             background: linear-gradient(90deg, var(--text-muted), var(--text-secondary));
             border-radius: var(--radius-full);
             transition: all var(--transition-slow);
             position: relative;
-            
-            // Animated shimmer effect
+
             &::after {
               content: '';
               position: absolute;
@@ -149,13 +131,8 @@
               animation: shimmer 2s infinite;
             }
           }
-          
-          @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-          }
         }
-        
+
         .skill-percentage {
           font-size: var(--text-sm);
           font-weight: var(--font-medium);
@@ -166,71 +143,32 @@
       }
     }
   }
-  
-  // Animation keyframes
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  // Responsive adjustments
-  @media (max-width: 768px) {
-    .section-header {
-      margin-bottom: var(--space-12);
-      
-      h2 {
-        margin-bottom: var(--space-3);
-      }
-      
-      .section-subtitle {
-        font-size: var(--text-base);
-      }
-    }
-    
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    .section-header { margin-bottom: var(--space-12); }
+    .skills-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); }
     .skill-card {
       padding: var(--space-6);
-      
-      .skill-icon {
-        width: 50px;
-        height: 50px;
-        margin-bottom: var(--space-5);
-        
-        i {
-          font-size: var(--text-xl);
-        }
-      }
-      
-      .skill-content .skill-name {
-        font-size: var(--text-lg);
-        margin-bottom: var(--space-3);
-      }
+      .skill-icon { width: 50px; height: 50px; margin-bottom: var(--space-5); }
     }
   }
-  
-  @media (max-width: 480px) {
-    .skill-card {
-      padding: var(--space-5);
-      
-      .skill-icon {
-        width: 45px;
-        height: 45px;
-        margin-bottom: var(--space-4);
-      }
-      
-      .skill-level {
-        gap: var(--space-2);
-        
-        .skill-percentage {
-          font-size: var(--text-xs);
-          min-width: 35px;
-        }
-      }
-    }
+}
+
+@media (max-width: 480px) {
+  .skills-section {
+    .skills-grid { grid-template-columns: 1fr; }
+    .skill-card { padding: var(--space-5); }
   }
 }
