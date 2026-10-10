@@ -66,7 +66,7 @@
           <textarea 
             id="message"
             formControlName="message" 
-            placeholder="Tell me about your project or just say hello..."
+            placeholder="Share a new opportunity or ideas to build together"
             rows="6"
             class="form-textarea"
             [class.error]="(contactForm.get('message')?.errors?.['required'] || contactForm.get('message')?.errors?.['minlength']) && contactForm.get('message')?.touched"></textarea>
