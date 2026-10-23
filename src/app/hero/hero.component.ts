@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-hero',
@@ -17,15 +18,19 @@ import { trigger, state, style, transition, animate, query, stagger } from '@ang
 })
 export class HeroComponent implements OnInit {
   animationState = 'in';
+  githubUrl = 'https://github.com/Vishwaslad8549';
+  linkedinUrl = 'https://www.linkedin.com/in/vishwas-lad-a53949156';
+
+  constructor(private analytics: AnalyticsService) {}
 
   ngOnInit() {
-    // Trigger animation sequence
     setTimeout(() => {
       this.animationState = 'in';
     }, 100);
   }
 
   contactClick() {
+    this.analytics.trackEvent('contact_click', { placement: 'hero_cta' });
     document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

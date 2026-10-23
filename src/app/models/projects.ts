@@ -1,7 +1,8 @@
 export interface Project{
-images:string[];
-title:string;
-description:string;
-technologies:string[];
-link:string
+  images: string[];
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  githubLink?: string;
 }
