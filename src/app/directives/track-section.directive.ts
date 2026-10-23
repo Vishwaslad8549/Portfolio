@@ -20,14 +20,22 @@ export class TrackSectionDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    if (!this.sectionName) return;
+    if (!this.sectionName) {
+      console.log('[TrackSection] No sectionName provided');
+      return;
+    }
+
+    console.log('[TrackSection] Observing section:', this.sectionName);
 
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log('[TrackSection]', this.sectionName, 'visible:', entry.isIntersecting, 'hasBeenSeen:', this.hasBeenSeen);
+          
           // Fire event when section becomes visible for the first time
           if (entry.isIntersecting && !this.hasBeenSeen) {
             this.hasBeenSeen = true;
+            console.log('[TrackSection] Firing section_view for:', this.sectionName);
             this.analytics.trackEvent('section_view', {
               section_name: this.sectionName,
               timestamp: new Date().toISOString()
