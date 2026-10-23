@@ -1,4 +1,4 @@
-<section class="projects-section">
+<section class="projects-section" appTrackSection [sectionName]="'projects'">
   <div class="section-header">
     <h2>Featured Work</h2>
     <p class="section-subtitle">
@@ -24,9 +24,14 @@
       
       <div class="project-content">
         <div class="project-header">
-          <h3 class="project-title">{{ project.title }}</h3>
-          <a [href]="project.link" target="_blank" class="project-external" 
-             aria-label="Open project in new tab">
+          <h3 class="project-title" 
+              appTrackLink [trackData]="{ eventName: 'project_demo_click', project_name: project.title, link_name: project.title }">
+            {{ project.title }}
+          </h3>
+          <a [href]="project.githubLink" target="_blank" rel="noopener noreferrer" class="project-external" 
+             aria-label="Open GitHub repository"
+             *ngIf="project.githubLink"
+             appTrackLink [trackData]="{ eventName: 'project_github_click', project_name: project.title, link_name: project.title + ' GitHub' }">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -42,8 +47,9 @@
         </div>
         
         <div class="project-actions">
-          <a [href]="project.link" target="_blank" class="project-link">
-            <span>View Project</span>
+          <a [href]="project.link" target="_blank" rel="noopener noreferrer" class="project-link"
+             appTrackLink [trackData]="{ eventName: 'project_demo_click', project_name: project.title, link_name: 'View Project' }">
+            <span>Live Demo</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

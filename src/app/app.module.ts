@@ -10,7 +10,10 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ContactComponent } from './contact/contact.component';
 import { HeroComponent } from './hero/hero.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TrackLinkDirective } from './directives/track-link.directive';
+import { TrackSectionDirective } from './directives/track-section.directive';
+import { AnalyticsService } from './services/analytics.service';
+import { EngagementService } from './services/engagement.service';
 
 @NgModule({
   declarations: [
@@ -19,16 +22,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SkillsComponent,
     ProjectsComponent,
     ContactComponent,
-    HeroComponent
+    HeroComponent,
+    TrackLinkDirective,
+    TrackSectionDirective
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-
   ],
-  providers: [],
+  providers: [AnalyticsService, EngagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

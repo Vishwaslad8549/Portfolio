@@ -1,45 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import emailjs from 'emailjs-com';
 import { environment } from 'src/environments/environment';
+import { AnalyticsService } from '../services/analytics.service';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent {
-  ismessagesent:boolean=false;
-  isError:boolean=false;
+export class ContactComponent implements OnInit {
+  ismessagesent: boolean = false;
+  isError: boolean = false;
   contactForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     message: ['', [Validators.required, Validators.minLength(20)]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private analytics: AnalyticsService) {}
+
+  ngOnInit(): void {
+    this.analytics.trackEvent('section_view', { section_name: 'contact' });
+  }
 
   onSubmit() {
     if (this.contactForm.valid) {
       emailjs
         .send(
-          environment.emailjs.serviceId, // Use Service ID from environment
-          environment.emailjs.templateId, // Use Template ID from environment
-          this.contactForm.value, // Form data
-          environment.emailjs.userId // U
+          environment.emailjs.serviceId,
+          environment.emailjs.templateId,
+          this.contactForm.value,
+          environment.emailjs.userId
         )
         .then(
           (response) => {
-            //console.log('Email sent successfully', response);
-            //alert('Message sent successfully!');
-            this.ismessagesent=true;
-            this.isError=false
+            this.ismessagesent = true;
+            this.isError = false;
+            this.analytics.trackEvent('contact_form_submitted', {
+              status: 'success'
+            });
             this.contactForm.reset();
           },
           (error) => {
             console.error('Error sending email', error);
-            this.isError=true
-            this.ismessagesent=false
-            //alert('Failed to send message. Please try again.');
+            this.isError = true;
+            this.ismessagesent = false;
+            this.analytics.trackEvent('contact_form_submitted', {
+              status: 'error'
+            });
           }
         );
     }

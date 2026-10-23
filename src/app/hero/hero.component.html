@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero" appTrackSection [sectionName]="'hero'">
   <div class="hero-content">
     <!-- Status/Eyebrow -->
     <div class="hero-status" [@fadeInUp]="animationState">
@@ -20,7 +20,8 @@
 
     <!-- CTA Buttons -->
     <div class="hero-cta" [@fadeInUp]="animationState">
-      <a (click)="contactClick()" class="cta-primary">
+      <a (click)="contactClick()" class="cta-primary" 
+         appTrackLink [trackData]="{ eventName: 'contact_click', placement: 'hero_cta' }">
         <span>Let's Work Together</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,12 +29,14 @@
       </a>
       
       <div class="social-links">
-        <a href="https://github.com/Vishwaslad8549" target="_blank" rel="noopener noreferrer" 
-           class="social-link" aria-label="GitHub Profile">
+        <a [href]="githubUrl" target="_blank" rel="noopener noreferrer" 
+           class="social-link" aria-label="GitHub Profile"
+           appTrackLink [trackData]="{ eventName: 'github_profile_click', placement: 'hero' }">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/vishwas-lad-a53949156" target="_blank" rel="noopener noreferrer" 
-           class="social-link" aria-label="LinkedIn Profile">
+        <a [href]="linkedinUrl" target="_blank" rel="noopener noreferrer" 
+           class="social-link" aria-label="LinkedIn Profile"
+           appTrackLink [trackData]="{ eventName: 'linkedin_click', placement: 'hero' }">
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
