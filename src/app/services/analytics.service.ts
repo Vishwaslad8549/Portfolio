@@ -12,6 +12,10 @@ export class AnalyticsService {
 
   constructor() {
     this.checkOptOut();
+    // Log environment status for debugging
+    console.log('[GA] Environment production:', environment.production);
+    console.log('[GA] Is dev mode:', this.isDev);
+    console.log('[GA] gtag available:', typeof gtag !== 'undefined');
   }
 
   /**
@@ -19,11 +23,16 @@ export class AnalyticsService {
    * Respects dev mode, opt-out, and gtag availability
    */
   trackEvent(eventName: string, params: { [key: string]: any } = {}): void {
+    console.log('[GA] trackEvent called:', eventName, params);
+    console.log('[GA] isDev:', this.isDev, 'isOptedOut:', this.isOptedOut, 'gtag:', typeof gtag);
+    
     if (this.isDev || this.isOptedOut || typeof gtag === 'undefined') {
+      console.log('[GA] Tracking blocked - isDev:', this.isDev, 'isOptedOut:', this.isOptedOut, 'gtag:', typeof gtag === 'undefined' ? 'undefined' : 'defined');
       return;
     }
 
     try {
+      console.log('[GA] Sending to gtag:', eventName);
       gtag('event', eventName, params);
     } catch (e) {
       console.error('GA tracking error:', e);
