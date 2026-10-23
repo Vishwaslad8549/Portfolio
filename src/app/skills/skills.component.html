@@ -1,0 +1,26 @@
+<section class="skills-section">
+  <div class="section-header">
+    <h2>Technical Expertise</h2>
+    <p class="section-subtitle">
+      Technologies and tools I use to bring ideas to life
+    </p>
+  </div>
+  
+  <div class="skills-grid">
+    <div class="skill-card" *ngFor="let skill of skills; let i = index" 
+         [style.animation-delay.ms]="i * 100">
+      <div class="skill-icon">
+        <i [class]="skill.icon"></i>
+      </div>
+      <div class="skill-content">
+        <h3 class="skill-name">{{ skill.name }}</h3>
+        <div class="skill-level">
+          <div class="skill-bar">
+            <div class="skill-progress" [style.width.%]="skill.level"></div>
+          </div>
+          <span class="skill-percentage">{{ skill.level }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
