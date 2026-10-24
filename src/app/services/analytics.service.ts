@@ -12,35 +12,61 @@ export class AnalyticsService {
 
   constructor() {
     this.checkOptOut();
-    // Log environment status for debugging
-    console.log('[GA] Environment production:', environment.production);
-    console.log('[GA] Is dev mode:', this.isDev);
+    this.initDebugMode();
+    console.log('[GA] Service initialized');
+    console.log('[GA] Production:', environment.production);
     console.log('[GA] gtag available:', typeof gtag !== 'undefined');
   }
 
   /**
-   * Track a custom event in GA4
-   * Respects dev mode, opt-out, and gtag availability
+   * Enable debug mode for GA4 DebugView
    */
-  trackEvent(eventName: string, params: { [key: string]: any } = {}): void {
-    console.log('[GA] trackEvent called:', eventName, params);
-    console.log('[GA] isDev:', this.isDev, 'isOptedOut:', this.isOptedOut, 'gtag:', typeof gtag);
-    
-    if (this.isDev || this.isOptedOut || typeof gtag === 'undefined') {
-      console.log('[GA] Tracking blocked - isDev:', this.isDev, 'isOptedOut:', this.isOptedOut, 'gtag:', typeof gtag === 'undefined' ? 'undefined' : 'defined');
-      return;
-    }
-
-    try {
-      console.log('[GA] Sending to gtag:', eventName);
-      gtag('event', eventName, params);
-    } catch (e) {
-      console.error('GA tracking error:', e);
+  private initDebugMode(): void {
+    if (typeof gtag !== 'undefined') {
+      try {
+        gtag('config', 'G-JRXEZF96BY', {
+          'debug_mode': true
+        });
+        console.log('[GA] ✓ Debug mode enabled for DebugView');
+      } catch (e) {
+        console.error('[GA] Error enabling debug mode:', e);
+      }
+    } else {
+      console.warn('[GA] gtag not available - check if GA script loaded');
     }
   }
 
   /**
-   * Manual page view for SPA (only if not using auto page view)
+   * Track a custom event in GA4
+   */
+  trackEvent(eventName: string, params: { [key: string]: any } = {}): void {
+    console.log('[GA] Event:', eventName, params);
+    
+    if (this.isDev) {
+      console.log('[GA] Dev mode - blocking event');
+      return;
+    }
+    
+    if (this.isOptedOut) {
+      console.log('[GA] Opted out - blocking event');
+      return;
+    }
+    
+    if (typeof gtag === 'undefined') {
+      console.warn('[GA] gtag undefined - event NOT sent');
+      return;
+    }
+
+    try {
+      gtag('event', eventName, params);
+      console.log('[GA] ✓ Event sent:', eventName);
+    } catch (e) {
+      console.error('[GA] Error:', e);
+    }
+  }
+
+  /**
+   * Track page view
    */
   trackPageView(path: string, title: string): void {
     if (this.isDev || this.isOptedOut || typeof gtag === 'undefined') {
@@ -54,7 +80,7 @@ export class AnalyticsService {
         page_title: title
       });
     } catch (e) {
-      console.error('GA page view error:', e);
+      console.error('[GA] page view error:', e);
     }
   }
 
@@ -70,9 +96,11 @@ export class AnalyticsService {
       if (notrackValue === '1') {
         localStorage.setItem('ga_optout', '1');
         this.disableGA();
+        console.log('[GA] Opt-out enabled');
       } else if (notrackValue === '0') {
         localStorage.removeItem('ga_optout');
         this.isOptedOut = false;
+        console.log('[GA] Opt-out cleared');
       }
     }
 
